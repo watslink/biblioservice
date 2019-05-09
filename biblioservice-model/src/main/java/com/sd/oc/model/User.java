@@ -12,7 +12,6 @@ import java.util.Set;
 @Table(name = "users")
 @Getter
 @Setter
-
 public class User {
 
     @Id
