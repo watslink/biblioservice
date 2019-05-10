@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -19,6 +20,9 @@ import java.util.Properties;
 @Configuration
 @ComponentScan("com.sd.oc.DAO")
 @PropertySource("classpath:database.properties")
+@EnableJpaRepositories(basePackages = {
+        "com.sd.oc.DAO"
+})
 @EnableTransactionManagement
 public class ConfigurationDAO {
 
@@ -60,7 +64,7 @@ public class ConfigurationDAO {
         return hibernateProp;
     }
 
-    @Bean
+    @Bean(name="entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean containerEntityManagerFactoryBean(final DataSource dataSource,
                                                                                     final Properties hibernateProperties) {
         LocalContainerEntityManagerFactoryBean bean = new LocalContainerEntityManagerFactoryBean();
