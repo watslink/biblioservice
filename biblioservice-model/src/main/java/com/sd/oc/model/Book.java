@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 import java.util.Set;
 
@@ -34,8 +35,8 @@ public class Book {
     @Column(name="number_in_stock")
     private int nbStock;
 
-    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, orphanRemoval = true)
-    private Set<Borrowing> listBorrowing;
+//    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, orphanRemoval = true)
+//    private Set<Borrowing> listBorrowing;
 
     public Book() {
     }

@@ -13,6 +13,7 @@
         <module>biblioservice-consumer</module>
         <module>biblioservice-business</module>
         <module>biblioservice-API</module>
+        <module>biblioservice-utils</module>
     </modules>
 
     <!-- =============================================================== -->
@@ -87,6 +88,14 @@
                 <version>5.1.5.RELEASE</version>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>5.1.5.RELEASE</version>
+            </dependency>
+
+
             <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -94,6 +103,7 @@
                 <version>1.18.6</version>
                 <scope>provided</scope>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
