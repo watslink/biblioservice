@@ -15,6 +15,7 @@ import javax.annotation.PostConstruct;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import java.util.List;
 
 @WebService (serviceName = "BookAPI")
 public class BookServiceAPI  {
@@ -24,10 +25,15 @@ public class BookServiceAPI  {
     BookService bookService=context.getBean(BookService.class);
 
 
-    @WebMethod (operationName = "findById")
+    @WebMethod (operationName = "findBookById")
     public Book findbyId(@WebParam(name="book_id") int id){
         Book book=bookService.get(id);
         return book;
+    }
+
+    @WebMethod (operationName="findAllBooks")
+    public List<Book> findAll(){
+        return bookService.getAll();
     }
 
 
