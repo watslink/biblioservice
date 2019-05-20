@@ -24,11 +24,9 @@ public class BookServiceAPI  {
     BookService bookService=context.getBean(BookService.class);
 
 
-
     @WebMethod (operationName = "findById")
     public Book findbyId(@WebParam(name="book_id") int id){
         Book book=bookService.get(id);
-        System.out.println(book.getTitle());
         return book;
     }
 

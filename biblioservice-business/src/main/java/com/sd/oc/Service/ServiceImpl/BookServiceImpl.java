@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,4 +21,11 @@ public class BookServiceImpl implements BookService {
         Optional<Book> optBook=bookDAO.findById(id);
         return optBook.orElse(null);
     }
+
+    @Override
+    public List<Book> getAll() {
+        return (List<Book>)bookDAO.findAll();
+    }
+
+
 }
