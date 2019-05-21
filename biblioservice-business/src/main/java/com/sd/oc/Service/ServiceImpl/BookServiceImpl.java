@@ -17,20 +17,19 @@ public class BookServiceImpl implements BookService {
     BookDAO bookDAO;
 
     @Override
-    public Book get(int id) {
+    public Book getBook(int id) {
         Optional<Book> optBook=bookDAO.findById(id);
         return optBook.orElse(null);
     }
 
     @Override
-    public void update(Book book) {
+    public void updateBook(Book book) {
         bookDAO.save(book);
     }
 
     @Override
-    public List<Book> getAll() {
+    public List<Book> getAllBook() {
         return (List<Book>)bookDAO.findAll();
     }
-
 
 }

@@ -21,13 +21,13 @@ public class BookServiceAPI {
 
     @WebMethod(operationName = "findBookById")
     public Book findbyId(@WebParam(name = "book_id") int id) {
-        Book book = bookService.get(id);
+        Book book = bookService.getBook(id);
         return book;
     }
 
     @WebMethod(operationName = "findAllBooks")
     public List<Book> findAll() {
-        return bookService.getAll();
+        return bookService.getAllBook();
     }
 
 
