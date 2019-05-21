@@ -35,11 +35,11 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String mail, boolean enabled) {
+    public User(String username, String password, String mail) {
         this.username = username;
         this.password = password;
         this.mail = mail;
-        this.enabled = enabled;
+        this.enabled = true;
     }
 
     @Override

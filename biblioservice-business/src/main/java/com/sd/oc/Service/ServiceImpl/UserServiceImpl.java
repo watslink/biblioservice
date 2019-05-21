@@ -35,4 +35,10 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
+
+    @Override
+    public void addUser(String username, String password, String mail) {
+        User user=new User(username, passwordEncoder.encode(password), mail);
+        userDAO.save(user);
+    }
 }
