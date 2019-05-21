@@ -20,7 +20,6 @@ public class User {
     private int user_id;
 
     @Column
-    @NaturalId
     private String username;
 
     @Column
