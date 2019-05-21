@@ -32,14 +32,6 @@ public class User {
     @Column
     private boolean enabled;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
-    private Set<Borrowing> listBorrowing;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "role_user",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id")})
-    private Set<Role> listRole;
 
     public User() {
     }

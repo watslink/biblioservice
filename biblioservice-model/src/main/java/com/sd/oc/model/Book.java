@@ -35,9 +35,6 @@ public class Book {
     @Column(name="number_in_stock")
     private int nbStock;
 
-//    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, orphanRemoval = true)
-//    private Set<Borrowing> listBorrowing;
-
     public Book() {
     }
 
