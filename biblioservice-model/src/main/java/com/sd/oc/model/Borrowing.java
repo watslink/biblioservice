@@ -3,8 +3,12 @@ package com.sd.oc.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.Objects;
 
@@ -12,7 +16,15 @@ import java.util.Objects;
 @Table(name = "borrowing")
 @Getter
 @Setter
+@PropertySource("classpath:database.properties")
 public class Borrowing {
+
+
+    @Value("weekOfBorrowing")
+    private Long weekOfBorrowing;
+
+    @Value("extendWeek")
+    private Long extendWeek;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +40,7 @@ public class Borrowing {
 
     @Column (name = "return_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date returnDate;
+    private LocalDate returnDate;
 
     @Column
     private boolean extended;
@@ -36,11 +48,16 @@ public class Borrowing {
     public Borrowing() {
     }
 
-    public Borrowing(Book book, User user, Date returnDate, boolean extended) {
+    public Borrowing(Book book, User user) {
         this.book = book;
         this.user = user;
-        this.returnDate = returnDate;
-        this.extended = extended;
+        this.returnDate = LocalDate.now().plus(weekOfBorrowing, ChronoUnit.WEEKS);
+        this.extended = false;
+    }
+
+    public void extend(){
+        this.returnDate=returnDate.plus(extendWeek, ChronoUnit.WEEKS);
+        this.extended=true;
     }
 
     @Override
