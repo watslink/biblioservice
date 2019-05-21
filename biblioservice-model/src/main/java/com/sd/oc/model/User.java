@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -40,5 +41,26 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> listRole;
 
+    public User() {
+    }
 
+    public User(String username, String password, String mail, boolean enabled) {
+        this.username = username;
+        this.password = password;
+        this.mail = mail;
+        this.enabled = enabled;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return user_id == user.user_id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(user_id);
+    }
 }
