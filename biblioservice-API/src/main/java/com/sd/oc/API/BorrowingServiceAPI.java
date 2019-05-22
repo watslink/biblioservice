@@ -23,11 +23,6 @@ public class BorrowingServiceAPI {
     BookService bookService = context.getBean(BookService.class);
     UserService userService = context.getBean(UserService.class);
 
-//    @WebMethod(operationName ="findBorrowingById")
-//    public Borrowing findBorrowingById(@WebParam(name="borrowing_id") int id){
-//        return borrowingService.getBorrowing(id);
-//    }
-
     @WebMethod(operationName = "findAllBorrowing")
     public List<Borrowing> findAllBorrowing() {
         return borrowingService.getAllBorrowing();
@@ -55,5 +50,10 @@ public class BorrowingServiceAPI {
     @WebMethod(operationName="findAllBorrowingOutOfTime")
     public List<Borrowing> findAllBorrowingOutOfTime(){
         return borrowingService.getAllBorrowingOutOfTime();
+    }
+
+    @WebMethod(operationName = "extendBorrowing")
+    public void extendBorrowing(@WebParam(name = "borrowing_id)") int id){
+        borrowingService.extendBorrowing(borrowingService.getBorrowing(id));
     }
 }
