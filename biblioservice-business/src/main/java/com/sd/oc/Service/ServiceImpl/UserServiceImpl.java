@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,6 +26,10 @@ public class UserServiceImpl implements UserService {
         return optUser.orElse(null);
     }
 
+    @Override
+    public User getUserByUsername(String username)  {
+        return userDAO.findByUsername(username);
+    }
 
     @Override
     public void addUser(String username, String password, String mail) {
@@ -33,7 +38,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByUsername(String username)  {
-        return userDAO.findByUsername(username);
+    public List<User> getAllUsers() {
+        return (List<User>)userDAO.findAll();
     }
+
+
 }

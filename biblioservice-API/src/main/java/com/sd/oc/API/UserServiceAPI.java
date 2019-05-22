@@ -26,6 +26,5 @@ public class UserServiceAPI {
     @WebMethod(operationName = "findUserByUsername")
     public  User findUserByUsername(@WebParam(name="username") String username){
         return userService.getUserByUsername(username);
-
     }
 }
