@@ -23,4 +23,9 @@
     <url-pattern>/userAPI</url-pattern>
   </servlet-mapping>
 
+  <servlet-mapping>
+    <servlet-name>WSServlet</servlet-name>
+    <url-pattern>/borrowingAPI</url-pattern>
+  </servlet-mapping>
+
 </web-app>

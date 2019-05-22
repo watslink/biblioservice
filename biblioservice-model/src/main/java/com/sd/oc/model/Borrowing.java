@@ -1,15 +1,19 @@
+
 package com.sd.oc.model;
 
 
+import com.sd.oc.utils.LocalDateXmlAdapter;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapters;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -17,13 +21,16 @@ import java.util.Objects;
 @Getter
 @Setter
 @PropertySource("classpath:database.properties")
+@XmlRootElement
 public class Borrowing {
 
 
     @Value("weekOfBorrowing")
+    @Transient
     private Long weekOfBorrowing;
 
     @Value("extendWeek")
+    @Transient
     private Long extendWeek;
 
     @Id
@@ -39,10 +46,17 @@ public class Borrowing {
     private User user;
 
     @Column (name = "return_date")
+
     private LocalDate returnDate;
 
     @Column
     private boolean extended;
+
+    @XmlJavaTypeAdapter(LocalDateXmlAdapter.class)
+    public LocalDate getReturnDate(){
+        return returnDate;
+    }
+
 
     public Borrowing() {
     }
