@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import java.util.List;
 
 @WebService(serviceName = "UserAPI")
 public class UserServiceAPI {
@@ -26,5 +27,10 @@ public class UserServiceAPI {
     @WebMethod(operationName = "findUserByUsername")
     public  User findUserByUsername(@WebParam(name="username") String username){
         return userService.getUserByUsername(username);
+    }
+
+    @WebMethod(operationName = "findAllUsers")
+    public List<User> findAllUsers(){
+        return userService.getAllUsers();
     }
 }
