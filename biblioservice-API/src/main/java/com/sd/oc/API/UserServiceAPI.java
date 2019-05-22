@@ -4,6 +4,7 @@ import com.sd.oc.Service.ServiceInterface.UserService;
 import com.sd.oc.model.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -18,9 +19,13 @@ public class UserServiceAPI {
 
     @WebMethod(operationName = "findUserById")
     public User findUserById(@WebParam(name = "user_id") int id) {
-        User user = userService.getUser(id);
+        User user = userService.getUserById(id);
         return user;
     }
 
+    @WebMethod(operationName = "findUserByUsername")
+    public  User findUserByUsername(@WebParam(name="username") String username){
+        return userService.getUserByUsername(username);
 
+    }
 }

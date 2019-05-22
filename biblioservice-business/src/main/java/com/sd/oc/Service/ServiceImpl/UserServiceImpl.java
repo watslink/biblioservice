@@ -3,20 +3,16 @@ package com.sd.oc.Service.ServiceImpl;
 
 import com.sd.oc.DAO.UserDAO;
 import com.sd.oc.Service.ServiceInterface.UserService;
-import com.sd.oc.model.MyUserDetails;
 import com.sd.oc.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDAO userDAO;
@@ -24,7 +20,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
 
     @Override
-    public User getUser(int id) {
+    public User getUserById(int id) {
         Optional<User> optUser=userDAO.findById(id);
         return optUser.orElse(null);
     }
@@ -37,11 +33,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDAO.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException(username);
-        }
-        return new MyUserDetails(user);
+    public User getUserByUsername(String username)  {
+        return userDAO.findByUsername(username);
     }
 }
