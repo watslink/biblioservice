@@ -20,5 +20,5 @@ public interface BorrowingService {
 
     List<Borrowing>getAllBorrowingOfUser(User user);
 
-    List<Borrowing>getAllBorrowingOutOfTIme();
+    List<Borrowing> getAllBorrowingOutOfTime();
 }

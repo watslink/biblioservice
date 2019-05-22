@@ -73,7 +73,7 @@ public class BorrowingServiceImpl implements BorrowingService {
     }
 
     @Override
-    public List<Borrowing> getAllBorrowingOutOfTIme() {
+    public List<Borrowing> getAllBorrowingOutOfTime() {
         return borrowingDAO.findByReturnDateBefore(LocalDate.now());
     }
 }

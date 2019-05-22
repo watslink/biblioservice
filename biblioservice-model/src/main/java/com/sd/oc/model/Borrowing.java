@@ -11,7 +11,6 @@ import org.springframework.context.annotation.PropertySource;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapters;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
@@ -20,18 +19,18 @@ import java.util.Objects;
 @Table(name = "borrowing")
 @Getter
 @Setter
-@PropertySource("classpath:database.properties")
+@PropertySource("classpath:borrowing.properties")
 @XmlRootElement
 public class Borrowing {
 
 
-    @Value("weekOfBorrowing")
+    @Value("${weekOfBorrowing}")
     @Transient
-    private Long weekOfBorrowing;
+    private int weekOfBorrowing;
 
-    @Value("extendWeek")
+    @Value("${extendWeek}")
     @Transient
-    private Long extendWeek;
+    private int extendWeek;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -69,8 +68,10 @@ public class Borrowing {
     }
 
     public void extend(){
-        this.returnDate=returnDate.plus(extendWeek, ChronoUnit.WEEKS);
-        this.extended=true;
+        if(!this.extended) {
+            this.returnDate = returnDate.plus(extendWeek, ChronoUnit.WEEKS);
+            this.extended = true;
+        }
     }
 
     @Override
