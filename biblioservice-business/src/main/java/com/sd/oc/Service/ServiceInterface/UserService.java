@@ -6,7 +6,5 @@ public interface UserService {
 
     User getUser(int id);
 
-    User checkUserConnection(String username, String password);
-
     void addUser(String username, String password, String mail);
 }

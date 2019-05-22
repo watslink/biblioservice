@@ -20,7 +20,7 @@ public class BookServiceAPI {
 
 
     @WebMethod(operationName = "findBookById")
-    public Book findbyId(@WebParam(name = "book_id") int id) {
+    public Book findBookById(@WebParam(name = "book_id") int id) {
         Book book = bookService.getBook(id);
         return book;
     }

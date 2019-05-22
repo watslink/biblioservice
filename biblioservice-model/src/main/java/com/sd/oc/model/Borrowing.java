@@ -39,7 +39,6 @@ public class Borrowing {
     private User user;
 
     @Column (name = "return_date")
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDate returnDate;
 
     @Column

@@ -5,4 +5,8 @@
             name="bookAPI"
             implementation="com.sd.oc.API.BookServiceAPI"
             url-pattern="/bookAPI" />
+    <endpoint
+            name="userAPI"
+            implementation="com.sd.oc.API.UserServiceAPI"
+            url-pattern="/userAPI" />
 </endpoints>

@@ -18,6 +18,9 @@
     <url-pattern>/bookAPI</url-pattern>
   </servlet-mapping>
 
-
+  <servlet-mapping>
+    <servlet-name>WSServlet</servlet-name>
+    <url-pattern>/userAPI</url-pattern>
+  </servlet-mapping>
 
 </web-app>
