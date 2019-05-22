@@ -33,4 +33,11 @@ public class UserServiceAPI {
     public List<User> findAllUsers(){
         return userService.getAllUsers();
     }
+
+    @WebMethod(operationName = "addUser")
+    public void addUser(@WebParam(name="username") String username,
+                        @WebParam(name="password") String password,
+                        @WebParam(name = "mail") String mail){
+        userService.addUser(username, password,mail);
+    }
 }
