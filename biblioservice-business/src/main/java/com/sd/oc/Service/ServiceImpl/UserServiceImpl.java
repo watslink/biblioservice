@@ -3,6 +3,8 @@ package com.sd.oc.Service.ServiceImpl;
 import com.sd.oc.DAO.UserDAO;
 import com.sd.oc.Service.ServiceInterface.UserService;
 import com.sd.oc.model.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,6 +20,7 @@ public class UserServiceImpl implements UserService {
 
     private PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
 
+    private static Logger logger = LogManager.getLogger("UserServiceImpl");
     @Override
     public User getUserById(int id) {
         Optional<User> optUser=userDAO.findById(id);
@@ -33,6 +36,7 @@ public class UserServiceImpl implements UserService {
     public void addUser(String username, String password, String mail) {
         User user=new User(username, passwordEncoder.encode(password), mail);
         userDAO.save(user);
+        logger.info("User "+username+" is added");
     }
 
     @Override

@@ -54,17 +54,23 @@ public class BorrowingServiceImpl implements BorrowingService {
             bookService.updateBook(book);
             Borrowing borrowing=new Borrowing(book, user, LocalDate.now().plus(weekOfBorrowing, ChronoUnit.WEEKS));
             borrowingDAO.save(borrowing);
+            logger.info("saving borrowing id="+borrowing.getBorrowing_id());
         }
         else
-            logger.warn("impossible d'emprunter un livre-> stock=0");
+            logger.warn("Book id="+book.getBook_id()+" cannat be borrow-> stock=0");
     }
 
     @Override
     public void deleteBorrowing(Borrowing borrowing) {
-        Book book=borrowing.getBook();
-        book.setNbStock(book.getNbStock()+1);
-        bookService.updateBook(book);
-        borrowingDAO.delete(borrowing);
+        if(!(borrowing==null)){
+            Book book=borrowing.getBook();
+            book.setNbStock(book.getNbStock()+1);
+            bookService.updateBook(book);
+            borrowingDAO.delete(borrowing);
+            logger.info("borrowing id="+borrowing.getBorrowing_id()+" is deleted");
+        }
+        else
+            logger.warn("this borrowing doesn't exist");
     }
 
     @Override
@@ -73,7 +79,10 @@ public class BorrowingServiceImpl implements BorrowingService {
             borrowing.setReturnDate(borrowing.getReturnDate().plus(extendWeek, ChronoUnit.WEEKS));
             borrowing.setExtended(true);
             borrowingDAO.save(borrowing);
+            logger.info("borrowing id="+borrowing.getBorrowing_id()+" is extended");
         }
+        else
+            logger.warn("borrowing id="+borrowing.getBorrowing_id()+" is already extended");
     }
 
     @Override
