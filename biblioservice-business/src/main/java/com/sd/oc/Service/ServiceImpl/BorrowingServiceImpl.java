@@ -11,14 +11,18 @@ import org.apache.logging.log4j.LogManager;
 
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
 
 @Service
+@PropertySource("classpath:borrowing.properties")
 public class BorrowingServiceImpl implements BorrowingService {
 
     @Autowired
@@ -26,6 +30,12 @@ public class BorrowingServiceImpl implements BorrowingService {
 
     @Autowired
     BookService bookService;
+
+    @Value("${weekOfBorrowing}")
+    int weekOfBorrowing;
+
+    @Value("${extendWeek}")
+    int extendWeek;
 
     private static Logger logger = LogManager.getLogger("BorrowingServiceImpl");
 
@@ -46,7 +56,7 @@ public class BorrowingServiceImpl implements BorrowingService {
         if(book.getNbStock()>=1){
             book.setNbStock(book.getNbStock()-1);
             bookService.updateBook(book);
-            Borrowing borrowing=new Borrowing(book, user);
+            Borrowing borrowing=new Borrowing(book, user, LocalDate.now().plus(weekOfBorrowing, ChronoUnit.WEEKS));
             borrowingDAO.save(borrowing);
         }
         else
@@ -63,8 +73,11 @@ public class BorrowingServiceImpl implements BorrowingService {
 
     @Override
     public void extendBorrowing(Borrowing borrowing) {
-        borrowing.extend();
-        borrowingDAO.save(borrowing);
+        if(!borrowing.isExtended()){
+            borrowing.setReturnDate(borrowing.getReturnDate().plus(extendWeek, ChronoUnit.WEEKS));
+            borrowing.setExtended(true);
+            borrowingDAO.save(borrowing);
+        }
     }
 
     @Override

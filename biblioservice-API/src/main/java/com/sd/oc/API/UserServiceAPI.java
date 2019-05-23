@@ -38,6 +38,6 @@ public class UserServiceAPI {
     public void addUser(@WebParam(name="username") String username,
                         @WebParam(name="password") String password,
                         @WebParam(name = "mail") String mail){
-        userService.addUser(username, password,mail);
+        userService.addUser(username, password, mail);
     }
 }

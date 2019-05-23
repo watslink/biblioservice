@@ -53,7 +53,7 @@ public class BorrowingServiceAPI {
     }
 
     @WebMethod(operationName = "extendBorrowing")
-    public void extendBorrowing(@WebParam(name = "borrowing_id)") int id){
+    public void extendBorrowing(@WebParam(name = "borrowing_id") int id){
         borrowingService.extendBorrowing(borrowingService.getBorrowing(id));
     }
 }

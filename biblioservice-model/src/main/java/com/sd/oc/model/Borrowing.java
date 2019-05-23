@@ -5,6 +5,7 @@ package com.sd.oc.model;
 import com.sd.oc.utils.LocalDateXmlAdapter;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 
@@ -19,18 +20,11 @@ import java.util.Objects;
 @Table(name = "borrowing")
 @Getter
 @Setter
-@PropertySource("classpath:borrowing.properties")
 @XmlRootElement
+
 public class Borrowing {
 
 
-    @Value("${weekOfBorrowing}")
-    @Transient
-    private int weekOfBorrowing;
-
-    @Value("${extendWeek}")
-    @Transient
-    private int extendWeek;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,19 +54,13 @@ public class Borrowing {
     public Borrowing() {
     }
 
-    public Borrowing(Book book, User user) {
+    public Borrowing(Book book, User user, LocalDate returnDate) {
         this.book = book;
         this.user = user;
-        this.returnDate = LocalDate.now().plus(weekOfBorrowing, ChronoUnit.WEEKS);
+        this.returnDate = returnDate;
         this.extended = false;
     }
 
-    public void extend(){
-        if(!this.extended) {
-            this.returnDate = returnDate.plus(extendWeek, ChronoUnit.WEEKS);
-            this.extended = true;
-        }
-    }
 
     @Override
     public boolean equals(Object o) {
