@@ -14,21 +14,17 @@ import java.util.List;
 @WebService(serviceName = "BookAPI")
 public class BookServiceAPI {
 
-    ApplicationContext context = new AnnotationConfigApplicationContext(ConfigurationAPI.class);
+    private ApplicationContext context = new AnnotationConfigApplicationContext(ConfigurationAPI.class);
 
-    BookService bookService = context.getBean(BookService.class);
-
+    private BookService bookService = context.getBean(BookService.class);
 
     @WebMethod(operationName = "findBookById")
     public Book findBookById(@WebParam(name = "book_id") int id) {
-        Book book = bookService.getBook(id);
-        return book;
+        return bookService.getBook(id);
     }
 
     @WebMethod(operationName = "findAllBooks")
     public List<Book> findAll() {
         return bookService.getAllBook();
     }
-
-
 }

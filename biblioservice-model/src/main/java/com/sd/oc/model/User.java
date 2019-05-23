@@ -3,11 +3,9 @@ package com.sd.oc.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.NaturalId;
-
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "users")
@@ -30,7 +28,6 @@ public class User {
 
     @Column
     private boolean enabled;
-
 
     public User() {
     }

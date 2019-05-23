@@ -14,14 +14,13 @@ import java.util.List;
 @WebService(serviceName = "UserAPI")
 public class UserServiceAPI {
 
-    ApplicationContext context = new AnnotationConfigApplicationContext(ConfigurationAPI.class);
+    private ApplicationContext context = new AnnotationConfigApplicationContext(ConfigurationAPI.class);
 
-    UserService userService = context.getBean(UserService.class);
+    private UserService userService = context.getBean(UserService.class);
 
     @WebMethod(operationName = "findUserById")
     public User findUserById(@WebParam(name = "user_id") int id) {
-        User user = userService.getUserById(id);
-        return user;
+        return userService.getUserById(id);
     }
 
     @WebMethod(operationName = "findUserByUsername")

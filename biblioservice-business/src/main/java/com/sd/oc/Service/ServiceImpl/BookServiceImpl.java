@@ -4,7 +4,6 @@ import com.sd.oc.DAO.BookDAO;
 import com.sd.oc.Service.ServiceInterface.BookService;
 import com.sd.oc.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,5 +30,4 @@ public class BookServiceImpl implements BookService {
     public List<Book> getAllBook() {
         return (List<Book>)bookDAO.findAll();
     }
-
 }

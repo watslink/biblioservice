@@ -5,15 +5,10 @@ package com.sd.oc.model;
 import com.sd.oc.utils.LocalDateXmlAdapter;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 @Entity
@@ -21,10 +16,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @XmlRootElement
-
 public class Borrowing {
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +31,6 @@ public class Borrowing {
     private User user;
 
     @Column (name = "return_date")
-
     private LocalDate returnDate;
 
     @Column
@@ -49,7 +40,6 @@ public class Borrowing {
     public LocalDate getReturnDate(){
         return returnDate;
     }
-
 
     public Borrowing() {
     }

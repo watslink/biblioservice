@@ -17,11 +17,11 @@ import java.util.List;
 @WebService(serviceName = "BorrowingAPI")
 public class BorrowingServiceAPI {
 
-    ApplicationContext context = new AnnotationConfigApplicationContext(ConfigurationAPI.class);
+    private ApplicationContext context = new AnnotationConfigApplicationContext(ConfigurationAPI.class);
 
-    BorrowingService borrowingService = context.getBean(BorrowingService.class);
-    BookService bookService = context.getBean(BookService.class);
-    UserService userService = context.getBean(UserService.class);
+    private BorrowingService borrowingService = context.getBean(BorrowingService.class);
+    private BookService bookService = context.getBean(BookService.class);
+    private UserService userService = context.getBean(UserService.class);
 
     @WebMethod(operationName = "findAllBorrowing")
     public List<Borrowing> findAllBorrowing() {

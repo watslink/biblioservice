@@ -1,6 +1,5 @@
 package com.sd.oc.Service.ServiceImpl;
 
-
 import com.sd.oc.DAO.UserDAO;
 import com.sd.oc.Service.ServiceInterface.UserService;
 import com.sd.oc.model.User;
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -41,6 +39,4 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUsers() {
         return (List<User>)userDAO.findAll();
     }
-
-
 }

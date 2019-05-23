@@ -6,15 +6,12 @@ import com.sd.oc.Service.ServiceInterface.BorrowingService;
 import com.sd.oc.model.Book;
 import com.sd.oc.model.Borrowing;
 import com.sd.oc.model.User;
-
 import org.apache.logging.log4j.LogManager;
-
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -38,7 +35,6 @@ public class BorrowingServiceImpl implements BorrowingService {
     int extendWeek;
 
     private static Logger logger = LogManager.getLogger("BorrowingServiceImpl");
-
 
     @Override
     public Borrowing getBorrowing(int id) {
