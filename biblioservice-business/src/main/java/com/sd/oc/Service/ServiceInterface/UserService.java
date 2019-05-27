@@ -13,4 +13,6 @@ public interface UserService   {
     void addUser(String username, String password, String mail);
 
     List<User> getAllUsers();
+
+    boolean testIfPseudoNotUsed(String username);
 }

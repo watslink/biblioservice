@@ -34,13 +34,29 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addUser(String username, String password, String mail) {
-        User user=new User(username, passwordEncoder.encode(password), mail);
-        userDAO.save(user);
-        logger.info("User "+username+" is added");
+        if(testIfPseudoNotUsed(username)){
+            User user=new User(username, passwordEncoder.encode(password), mail);
+            userDAO.save(user);
+            logger.info("User "+username+" is added");
+        }
+        else
+        logger.warn("User "+username+" is not added, cause: username already exist");
     }
 
     @Override
     public List<User> getAllUsers() {
         return (List<User>)userDAO.findAll();
     }
+
+    @Override
+    public boolean testIfPseudoNotUsed(String username) {
+        for(User user:userDAO.findAll()){
+            if(user.getUsername().equals(username)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 }
