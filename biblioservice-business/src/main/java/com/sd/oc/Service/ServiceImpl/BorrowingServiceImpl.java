@@ -94,4 +94,9 @@ public class BorrowingServiceImpl implements BorrowingService {
     public List<Borrowing> getAllBorrowingOutOfTime() {
         return borrowingDAO.findByReturnDateBefore(LocalDate.now());
     }
+
+    @Override
+    public List<Borrowing> getAllBorrowingOutOfTimeOfUser(User user){
+        return borrowingDAO.findByUserAndReturnDateBefore(user, LocalDate.now());
+    }
 }
