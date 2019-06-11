@@ -12,4 +12,6 @@ public interface BorrowingDAO extends CrudRepository<Borrowing, Integer> {
     List<Borrowing> findByUser(User user);
 
     List<Borrowing> findByReturnDateBefore(LocalDate localDate);
+
+    List<Borrowing> findByUserAndReturnDateBefore(User user, LocalDate localDate);
 }
