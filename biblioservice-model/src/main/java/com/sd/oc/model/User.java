@@ -4,6 +4,10 @@ package com.sd.oc.model;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -11,6 +15,7 @@ import java.util.Objects;
 @Table(name = "users")
 @Getter
 @Setter
+@XmlAccessorType(XmlAccessType.FIELD)
 public class User {
 
     @Id
@@ -28,6 +33,10 @@ public class User {
 
     @Column
     private boolean enabled;
+
+    @OneToMany(mappedBy = "user")
+    @XmlTransient
+    private List<Borrowing> listOfBorrowings;
 
     public User() {
     }
