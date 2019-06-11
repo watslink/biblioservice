@@ -52,7 +52,7 @@ public class BorrowingServiceAPI {
         return borrowingService.getAllBorrowingOutOfTime();
     }
 
-    @WebMethod(operationName = "findAllBorrowingOfUser")
+    @WebMethod(operationName = "findAllBorrowingOutOfTimeOfUser")
     public List<Borrowing> findAllBorrowingOutOfTimeOfUser(@WebParam(name = "user_id") int id) {
         return borrowingService.getAllBorrowingOfUser(userService.getUserById(id));
     }
