@@ -54,7 +54,7 @@ public class BorrowingServiceAPI {
 
     @WebMethod(operationName = "findAllBorrowingOutOfTimeOfUser")
     public List<Borrowing> findAllBorrowingOutOfTimeOfUser(@WebParam(name = "user_id") int id) {
-        return borrowingService.getAllBorrowingOfUser(userService.getUserById(id));
+        return borrowingService.getAllBorrowingOutOfTimeOfUser(userService.getUserById(id));
     }
 
     @WebMethod(operationName = "extendBorrowing")
