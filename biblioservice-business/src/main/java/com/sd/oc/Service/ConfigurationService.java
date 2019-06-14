@@ -9,6 +9,4 @@ import org.springframework.context.annotation.Import;
 @ComponentScan("com.sd.oc.Service")
 @Import(ConfigurationDAO.class)
 public class ConfigurationService {
-
-
 }
